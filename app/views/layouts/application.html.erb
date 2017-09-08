@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Level1</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  
+  	<!-- user_signed_in? はユーザがログインしているか調べるdeviseのHelperメソッド -->
+          
+          <% if user_signed_in? %> 
+            <!-- current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド -->
+            <!-- *_path はUserモデルを作成したときに、
+              deviseにより自動で作成されてますので、rake routesで確認できます -->
+            
+            <div class="bg-info text-right">
+              <div class="container">
+                <%= link_to 'Home', user_path(current_user) %> ｜
+                <%= link_to 'Users', users_path %> ｜
+                <%= link_to "Books", posts_path %> ｜
+                <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+              </div>
+            </div>
+            
+          <% else %>
+            <div class="bg-info text-right">
+              <div class="container">
+                <%= link_to 'Home', root_path %>｜
+                <%= link_to "Sign Up", new_user_registration_path %> |
+                <%= link_to "Log Out", new_user_session_path %>
+              </div>
+            </div>
+            
+          <% end %>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<div class="container">
+	<p>Name</p>
+	<p><%= current_user.name %></p>
+	<p>Introduction</p>
+	<p><%= current_user.introduction %></p> 
+    <% if current_user.image? %>
+    	<p><%= image_tag current_user.image.url %></p>
+    <% else %>
+    　	<p>noimage</p>
+    <% end %>
+</div>
+    
+  
+
+  

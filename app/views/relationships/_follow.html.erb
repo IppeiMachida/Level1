@@ -1,0 +1,14 @@
+<% if current_user != user %>
+    <% if user.followed_by?(current_user) %> 
+        <%= link_to "Unfollow", user_relationships_path(user), method: :delete %>
+    <% elsif user.recieve_requested_by?(current_user) %>
+        <%= link_to "Cancel follow", user_relationships_path(user), method: :delete %>
+    <% else %>
+    <!-- userのアカウントが鍵付きであれば表示する文字を変える（処理は同じ）-->
+      <% if user.locked %>
+          <%= link_to "Request follow", user_relationships_path(user), method: :post %>
+      <% else %>
+          <%= link_to "Follow", user_relationships_path(user), method: :post %>
+      <% end %>
+    <% end %>
+<% end%>

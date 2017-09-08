@@ -1,0 +1,19 @@
+<div class="container">
+    <h1>Followers</h1>
+    <table class="table table-striped">
+
+      <% @followers.each do |user|  %>
+        <tr>
+          <% if @user.image? %>
+        　   <td><%= image_tag @user.image.url %></td>
+          <% else %>
+        　   <td>noimage</td>
+          <% end %>
+          <td><%= link_to user.name, user_path(user) %></td>
+          <td>
+            <div id="follow-btn-<%= user.id %>"><%= render 'relationships/follow', user: user %></div>
+          </td>
+        </tr> 
+      <% end %>
+    </table>
+</div>

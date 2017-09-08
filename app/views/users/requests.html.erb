@@ -1,0 +1,22 @@
+<div class="container">
+
+    <h1>Requests</h1>
+
+    <table class="table">
+
+        <% @requests.each do |user| %>
+          <tr>
+              <% if @user.image? %>
+                　<td><%= image_tag @user.image.url %></td>
+              <% else %>
+                　<td>noimage</td>
+              <% end %>
+              <td><%= link_to user.name, user_path(user) %></td>
+              <td><%= link_to 'Permit', accept_user_relationships_path(user.id), method: :post %></td>
+              <td><%= link_to 'Refuse', user_relationships_path(user.id), method: :delete %></td>
+          </tr>
+        <% end %>
+
+    </table>
+
+</div>

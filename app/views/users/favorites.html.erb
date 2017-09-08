@@ -1,0 +1,32 @@
+<div class="container">
+
+  <h1>Favorites</h1>
+
+  <table class="table">
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Title</th>
+        <th>Opinion</th>
+        <th></th>
+        <th></th>
+      </tr>
+    
+      <% @user.favorites.map { |f| f.post }.each do |post| %>
+          <tr>
+              <% if post.user.image? %>
+    　           <td><%= image_tag post.user.image.url %></td>
+              <% else %>
+    　           <td>noimage</td>
+              <% end %>
+            
+              <td><%= link_to post.user.name, user_path(post.user) %></td>
+              <td class="post-title"><%= post.title %></td>
+              <td><%= post.body %></td>
+              <td><%= post.favorites.count %></td>
+              <td><div id="favorite-btn-<%= post.id %>"><%= render 'favorites/favorite', post: post %></div></td>
+          </tr>
+      <% end %>
+  </table>
+
+</div>
